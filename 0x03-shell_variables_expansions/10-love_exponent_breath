@@ -1,2 +1,2 @@
 #!/bin/bash
-echo -e "$BREATH \n$LOVE"
+printenv BREATH LOVE
