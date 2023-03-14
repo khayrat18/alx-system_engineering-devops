@@ -1,2 +1,2 @@
 #!/bin/bash
-ls -AP |grep -v /$ |wc -l
+ls -l |grep -^d |wc -l
