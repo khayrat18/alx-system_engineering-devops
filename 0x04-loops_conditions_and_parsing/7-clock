@@ -1,30 +1,16 @@
 #!/usr/bin/env bash
-
+#Bash script that displays the time for 12 hours and 59 minutes
 
 hour=0
 minute=1
 
-while [ $hour -lt 12 ] || ([ $hour -eq 12 ] && [ $minute -le 59 ])
+while [ $hour -le 12 ] 
 do
-    if [ $hour -lt 10 ]
-    then
-        echo -n "0$hour:"
-    else
-        echo -n "$hour:"
-    fi
-
-    if [ $minute -lt 10 ]
-    then
-        echo "0$minute"
-    else
-        echo "$minute"
-    fi
-
-    minute=$((minute+1))
-
-    if [ $minute -eq 60 ]
-    then
-        minute=0
-        hour=$((hour+1))
-    fi
+   while [ $minute -le 59 ]
+   do
+       echo "$hour:$(printf "%02d" $minute)"
+       minute=$((minute + 1))
+   done
+   hour=$((hour + 1))
+   minute=1
 done
