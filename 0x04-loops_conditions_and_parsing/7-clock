@@ -2,15 +2,18 @@
 #Bash script that displays the time for 12 hours and 59 minutes
 
 hour=0
-minute=1
 
-while [ $hour -le 12 ] 
-do
-   while [ $minute -le 59 ]
-   do
-       echo "$hour:$(printf "%02d" $minute)"
-       minute=$((minute + 1))
-   done
-   hour=$((hour + 1))
-   minute=1
+while [ $hour -le 24 ]; do
+  minute=0
+  
+  while [ $minute -le 59 ]; do
+    if [ $minute -eq 0 ]; then
+      echo "Hour: $hour"
+    fi   
+    echo $minute    
+    minute=$((minute + 1))
+  done
+  
+  hour=$((hour + 1))
+  minute=0
 done
