@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+# Get the listening sockets and their associated processes
+listening_sockets=$(ss -tlnp 2>/dev/null | awk 'NR > 1 {print $1,$2,$4}' | sed 's/.*:\([0-9]\+\)$/\1/')
+
+# Iterate over each listening socket
+while IFS= read -r socket; do
+  pid=$(echo "$socket" | awk '{print $2}' | cut -d'=' -f2)
+  program=$(echo "$socket" | awk '{print $3}' | cut -d'/' -f2)
+
+  echo "PID: $pid, Program: $program, Listening Port: $socket"
+done <<< "$listening_sockets"
